@@ -1,5 +1,5 @@
 # Market Maker Lite TDA Repository
-[![asdfasdfasdfa](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+[![Website](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 A repository of code that interacts with the tda-api 
 
