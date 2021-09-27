@@ -7,6 +7,6 @@
 A repository of code that interacts with the TDA-API
 
 ### Options-Data
-[![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/MarketMakerLite/TDA/blob/master/LICENSE)
+[![GitHub license](https://badgen.net/github/license/MarketMakerLite/TDA)](https://github.com/MarketMakerLite/TDA/blob/master/LICENSE)
 
 This code loops through a list of tickers to get the entire options chain for each symbol
