@@ -121,6 +121,8 @@ def get_data(symbols, c):
             del df
         except Exception:
             traceback.print_exc()
+    return None
+
 
 
 def main():
@@ -149,8 +151,7 @@ def main():
         else:
             time.sleep(1)  # Sleep until the markets are open again
         continue
-    return
-
+    return None
 
 if __name__ == "__main__":
     main()
