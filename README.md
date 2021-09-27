@@ -8,5 +8,5 @@
 A repository of code that interacts with the TDA-API
 
 ### Options-Data
-
+[![GitHub last commit](https://img.shields.io/github/last-commit/MarketMakerLite/TDA/options-data)](https://github.com/MarketMakerLite/TDA/commits/options-data)
 This code loops through a list of tickers to get the entire options chain for each symbol
