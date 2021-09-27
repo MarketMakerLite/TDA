@@ -10,4 +10,6 @@
 A repository of code that interacts with the TDA-API
 
 ### Options-Data
-This code loops through a list of tickers to get the entire options chain for each symbol
+This code loops through a list of tickers to get the entire options chain for each symbol.
+It's designed to run all day, and will consistently loop through the list of tickers. 
+It will automatically handle the start and end of the trading day, as well as holidays, etc. 
