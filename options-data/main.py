@@ -56,7 +56,7 @@ def loginTDA():
 def getsymbols():
     """Example 1: Read from Database"""
     # engine = create_engine(config.psql)
-    # symbol_df = pd.read_sql_query('select * from companies where market_cap >= 900000000', con=engine)
+    # symbol_df = pd.read_sql_query('select ticker, market_cap from companies where market_cap >= 900000000', con=engine)
     # symbol_df = symbol_df.sort_values("market_cap", ascending=False)
     # symbols = symbol_df['ticker'].tolist()
 
