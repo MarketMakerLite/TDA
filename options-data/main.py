@@ -98,7 +98,7 @@ def options_chain(symbol, c):
             df["tdate"] = datetime.now(tz=timezone.utc).replace(hour=20, minute=0, second=0, microsecond=0) \
                 if datetime.now(tz=timezone.utc).time() > time(20, 0, 0) else datetime.now(tz=timezone.utc)
 
-            # wait for rate-limiting
+            # Wait for rate-limiting
             time.sleep(0.49)
         except Exception:
             traceback.print_exc()
