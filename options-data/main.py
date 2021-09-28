@@ -10,7 +10,6 @@ distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, e
 
 This file is part of the MML Open Source Library (www.github.com/MarketMakerLite)
 --------------------------------------------------------------------------------------------------------------------"""
-
 from tda import auth
 import pandas as pd
 from datetime import datetime, date, time, timezone, timedelta
@@ -122,7 +121,6 @@ def get_data(symbols, c):
         except Exception:
             traceback.print_exc()
     return None
-
 
 
 def main():
