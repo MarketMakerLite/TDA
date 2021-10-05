@@ -12,7 +12,8 @@ This file is part of the MML Open Source Library (www.github.com/MarketMakerLite
 --------------------------------------------------------------------------------------------------------------------"""
 from tda import auth
 import pandas as pd
-from datetime import datetime, date, time, timezone, timedelta
+import datetime
+from datetime import date, time, timezone
 import time
 import pandas_market_calendars as mcal
 from sqlalchemy import create_engine
@@ -22,8 +23,8 @@ import traceback
 
 
 # Check if markets are currently open using pandas_market_calendars
-def OpenCheck():
-    now = datetime.now(tz=timezone.utc)
+def opencheck():
+    now = datetime.datetime.now(tz=timezone.utc)
     trading_day = mcal.get_calendar('NYSE').schedule(start_date=date.today(), end_date=date.today())
     try:
         open_time = trading_day.iloc[0][0]
@@ -75,7 +76,7 @@ def getsymbols():
 def options_chain(symbol, c):
     while True:
         try:
-            print(datetime.today(), datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Parsing... ", symbol)
+            print(datetime.datetime.today(), datetime.datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Parsing... ", symbol)
             options_dict = []
             o = c.get_option_chain(symbol)
             query = o.json()
@@ -95,8 +96,8 @@ def options_chain(symbol, c):
             df["uticker"] = symbol
 
             # Add time of retrieval to dataframe
-            df["tdate"] = datetime.now(tz=timezone.utc).replace(hour=20, minute=0, second=0, microsecond=0) \
-                if datetime.now(tz=timezone.utc).time() > time(20, 0, 0) else datetime.now(tz=timezone.utc)
+            df["tdate"] = datetime.datetime.now(tz=timezone.utc).replace(hour=20, minute=0, second=0, microsecond=0) \
+                if datetime.datetime.now(tz=timezone.utc).time() > time(20, 0, 0) else datetime.datetime.now(tz=timezone.utc)
 
             # Wait for rate-limiting
             time.sleep(0.49)
@@ -125,31 +126,32 @@ def get_data(symbols, c):
 
 def main():
     c = loginTDA()
-    print(datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Welcome, good luck and have fun!")
+    print(datetime.datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Welcome, good luck and have fun!")
     while True:
         symbols = getsymbols()
-        market_open = OpenCheck()  # Check if markets are open
-        while market_open == True:
-                market_open = OpenCheck()  # Check if markets are still open
-                print(datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Markets are open!")
-                while market_open == True:
-                    market_open = OpenCheck()  # Check if markets are still open
-                    print(symbols, len(symbols))
-                    if market_open == True:
-                        try:
-                            get_data(symbols, c)
-                        except Exception:
-                            traceback.print_exc()
-                    else:
-                        print(datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Markets are closed, have a nice day!")
-                        break
+        market_open = opencheck()  # Check if markets are open
+        while market_open:
+            market_open = opencheck()  # Check if markets are still open
+            print(datetime.datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Markets are open!")
+            while market_open:
+                market_open = opencheck()  # Check if markets are still open
+                print(symbols, len(symbols))
+                if market_open:
+                    try:
+                        get_data(symbols, c)
+                    except Exception:
+                        traceback.print_exc()
                 else:
-                    print(datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Markets are closed, have a nice day!")
+                    print(datetime.datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Markets are closed, have a nice day!")
                     break
+            else:
+                print(datetime.datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Markets are closed, have a nice day!")
+                break
         else:
             time.sleep(1)  # Sleep until the markets are open again
         continue
     return None
+
 
 if __name__ == "__main__":
     main()
