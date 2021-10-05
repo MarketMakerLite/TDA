@@ -112,8 +112,16 @@ def options_chain(symbol, c):
 # Get options data and save to a database
 def get_data(symbols, c):
     engine = create_engine(config.psql)
-    df = pd.DataFrame()
+    headers = [('index', 'putCall', 'symbol', 'description', 'exchangeName', 'bid', 'ask', 'last', 'mark', 'bidSize',
+                'askSize', 'bidAskSize', 'lastSize', 'highPrice', 'lowPrice', 'openPrice', 'closePrice', 'totalVolume',
+                'tradeDate', 'tradeTimeInLong', 'quoteTimeInLong', 'netChange', 'volatility', 'delta', 'gamma', 'theta',
+                'vega', 'rho', 'openInterest', 'timeValue', 'theoreticalOptionValue', 'theoreticalVolatility',
+                'optionDeliverablesList', 'strikePrice', 'expirationDate', 'daysToExpiration', 'expirationType',
+                'lastTradingDay', 'multiplier', 'settlementType', 'deliverableNote', 'isIndexOption', 'percentChange',
+                'markChange', 'markPercentChange', 'nonStandard', 'inTheMoney', 'mini', 'uticker', 'tdate',
+                'intrinsicValue', 'pennyPilot')]
     for symbol in symbols:
+        df = pd.DataFrame(columns=headers)
         result = options_chain(symbol, c)
         try:
             df = pd.concat([df, result])
