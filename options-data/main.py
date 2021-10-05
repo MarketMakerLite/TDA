@@ -78,8 +78,7 @@ def options_chain(symbol, c):
         try:
             print(datetime.datetime.today(), datetime.datetime.now(tz=timezone.utc).strftime("%H:%M:%S"), "Parsing... ", symbol)
             options_dict = []
-            o = c.get_option_chain(symbol)
-            query = o.json()
+            query = c.get_option_chain(symbol).json()
             for contr_type in ['callExpDateMap', 'putExpDateMap']:
                 contract = dict(query)[contr_type]
                 expirations = contract.keys()
