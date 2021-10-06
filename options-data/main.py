@@ -26,7 +26,7 @@ def opencheck():
         if close_time > datetime.datetime.now(tz=timezone.utc) > open_time:
             market_open = True
         else:
-            market_open = True
+            market_open = False
     except Exception:
         market_open = False
     return market_open
