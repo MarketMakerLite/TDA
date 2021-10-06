@@ -19,12 +19,11 @@ def dt_now():
 
 def opencheck():
     """Check if markets are currently open using pandas_market_calendars"""
-    now = datetime.datetime.now(tz=timezone.utc)
     trading_day = mcal.get_calendar('NYSE').schedule(start_date=date.today(), end_date=date.today())
     try:
         open_time = trading_day.iloc[0][0]
         close_time = trading_day.iloc[0][1]
-        if close_time > now > open_time:
+        if close_time > datetime.datetime.now(tz=timezone.utc) > open_time:
             market_open = True
         else:
             market_open = True
