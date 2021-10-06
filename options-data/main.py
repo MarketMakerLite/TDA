@@ -23,7 +23,7 @@ def opencheck():
     try:
         open_time = trading_day.iloc[0][0]
         close_time = trading_day.iloc[0][1]
-        if close_time > datetime.datetime.now(tz=timezone.utc) > open_time:
+        if open_time < datetime.datetime.now(tz=timezone.utc) < close_time:
             market_open = True
         else:
             market_open = False
