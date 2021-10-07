@@ -1,3 +1,9 @@
+"""--------------------------------------------------------------------------------------------------------------------
+Copyright 2021 Market Maker Lite, LLC (MML)
+Licensed under the Apache License, Version 2.0
+THIS CODE IS PROVIDED AS IS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND
+This file is part of the MML Open Source Library (www.github.com/MarketMakerLite)
+--------------------------------------------------------------------------------------------------------------------"""
 from tda import auth
 import pandas as pd
 import datetime
