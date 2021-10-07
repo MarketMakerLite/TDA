@@ -129,6 +129,7 @@ def options_chain(symbol, c):
             # Sleep if rate-limit is exceeded
             if r.status_code == 429:
                 time.sleep(5)
+                continue
             else:
                 query = r.json()
                 # Start rate-limit timer
