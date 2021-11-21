@@ -7,7 +7,7 @@ This file is part of the MML Open Source Library (www.github.com/MarketMakerLite
 from tda import auth
 import pandas as pd
 import datetime
-from datetime import date, time, timezone
+from datetime import time, timezone
 import time
 import pandas_market_calendars as mcal
 from sqlalchemy import create_engine, inspect
@@ -147,17 +147,17 @@ def options_chain(symbol, c):
                 # Check if list is empty
                 if options_dict:
                     # Remove any unknown keys from response (in case TDA changes the API response without warning)
+                    # List of known keys
+                    keys = ["putCall", "symbol", "description", "exchangeName", "bid", "ask", "last", "mark", "bidSize"
+                            "askSize", "bidAskSize", "lastSize", "highPrice", "lowPrice", "openPrice", "closePrice",
+                            "totalVolume", "tradeDate", "tradeTimeInLong", "quoteTimeInLong", "netChange", "volatility",
+                            "delta", "gamma", "theta", "vega", "rho", "openInterest", "timeValue", "theoreticalOptionValue",
+                            "theoreticalVolatility", "optionDeliverablesList", "strikePrice", "expirationDate",
+                            "daysToExpiration", "expirationType", "lastTradingDay", "multiplier", "settlementType",
+                            "deliverableNote", "isIndexOption", "percentChange", "markChange", "markPercentChange",
+                            "nonStandard", "inTheMoney", "mini", "intrinsicValue", "pennyPilot"]
                     key_count = len(options_dict[0].keys())
-                    if key_count > 49:
-                        # List of known keys
-                        keys = ["putCall", "symbol", "description", "exchangeName", "bid", "ask", "last", "mark", "bidSize"
-                                "askSize", "bidAskSize", "lastSize", "highPrice", "lowPrice", "openPrice", "closePrice",
-                                "totalVolume", "tradeDate", "tradeTimeInLong", "quoteTimeInLong", "netChange", "volatility", "delta",
-                                "gamma", "theta", "vega", "rho", "openInterest", "timeValue", "theoreticalOptionValue",
-                                "theoreticalVolatility", "optionDeliverablesList", "strikePrice", "expirationDate",
-                                "daysToExpiration", "expirationType", "lastTradingDay", "multiplier", "settlementType",
-                                "deliverableNote", "isIndexOption", "percentChange", "markChange", "markPercentChange",
-                                "nonStandard", "inTheMoney", "mini", "intrinsicValue", "pennyPilot"]
+                    if key_count > len(keys):
                         # Drop unknown keys
                         options_dict = [{k: single[k] for k in keys if k in single} for single in options_dict]
                         # Warn user of new keys
@@ -166,7 +166,7 @@ def options_chain(symbol, c):
 
                     # Check if there are less than the expected number of fields
                     key_count = len(options_dict[0].keys())  # Update after dropping unknown keys
-                    if key_count < 49:
+                    if key_count < len(keys):
                         print(dt_now(), f'Warning, potential data errors for: {symbol}: '
                               'https://downdetector.com/status/td-ameritrade/')
                 else:
