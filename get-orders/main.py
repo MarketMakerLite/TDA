@@ -7,6 +7,7 @@ This file is part of the MML Open Source Library (www.github.com/MarketMakerLite
 import json
 import pandas as pd
 from tda import auth, client
+import config
 
 # Login to TD-Ameritrade
 token_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'ameritrade-credentials.json')
