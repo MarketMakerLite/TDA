@@ -36,7 +36,7 @@ def account_details():
         time_value = order_strat['enteredTime']
         quantity = order_strat["quantity"]
         
-        # Get values from Leg orderLegCollection
+        # Get values from orderLegCollection
         for legs in order_strat['orderLegCollection']:
             effect_value = legs['positionEffect']
             inst = legs['instrument']
