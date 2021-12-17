@@ -28,14 +28,13 @@ def account_details():
     
     # Unnest JSON response to dict with the order_id, datetime, underlying, effect, symbol, quantity, status
     pos = {}
-    for order_strat in r["securitiesAccount"]['orderStrategies']:
-      
-        # Get values from orderStrategies
+    # Get values from orderStrategies
+    for order_strat in r["securitiesAccount"]['orderStrategies']:      
         status = order_strat['status']
         order_id = order_strat['orderId']
         time_value = order_strat['enteredTime']
         quantity = order_strat["quantity"]
-        
+
         # Get values from orderLegCollection
         for legs in order_strat['orderLegCollection']:
             effect_value = legs['positionEffect']
