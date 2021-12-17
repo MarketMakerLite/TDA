@@ -15,5 +15,5 @@ It's designed to run all day, and will consistently loop through the list of tic
 It will automatically handle the start and end of the trading day, as well as holidays, etc. 
 
 ### Get-Orders
-This code gets all orders for a specific account, the result can then be filtered for specific orders.
-There's an option for returning a dictionary or Dataframe response.
+This code returns all orders from an account, the result can then be filtered for specific orders as needed.
+There's an included option for returning a dictionary or Dataframe response.
