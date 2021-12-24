@@ -56,7 +56,7 @@ while True:
 
         # Print Response
         if order_resp.status_code == 201:
-            print("Your order was placed successfully")
+            print("Your order was placed successfully.")
         elif order_resp.status_code == 401:
             print("Validation problem with the request.")
         elif order_resp.status_code == 500:
