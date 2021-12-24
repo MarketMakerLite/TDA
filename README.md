@@ -17,3 +17,6 @@ It will automatically handle the start and end of the trading day, as well as ho
 ### Get-Orders
 This code returns all orders from an account, the result can then be filtered for specific orders as needed.
 There's an included option for returning a dictionary or Dataframe response.
+
+### Orders
+A collection of code to place orders through the API. 
