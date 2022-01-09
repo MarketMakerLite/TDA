@@ -58,7 +58,7 @@ max_pain = strikes[m]
 ################################################## Create Plotly Chart ################################################
 colors = {'CALL': '#00c805',
           'PUT': '#FF0060'}
-chart_expiry = datetime.datetime.utcfromtimestamp(df['expirationDate'][0]/1000).replace(tzinfo=tz.UTC).astimezone(tz.gettz('America/New_York')).date()
+chart_expiry = datetime.datetime.utcfromtimestamp(expiry/1000).replace(tzinfo=tz.UTC).astimezone(tz.gettz('America/New_York')).date()
 max_pain_text = f'${max_pain: ,.2f}'
 
 fig = px.bar(df, x='strikePrice', y='openInterest', title=f"{symbol}    Expiry: {chart_expiry}    Max Pain:${max_pain}",
