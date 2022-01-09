@@ -25,6 +25,7 @@ c = easy_client(
 
 ####################################################### Set Variables #################################################
 symbol = 'TSLA'
+expiry = '2022-01-07'  # YYYY-MM-DD
 
 ####################################################### Retrieve Data #################################################
 options_dict = []
@@ -40,6 +41,11 @@ for contr_type in ['callExpDateMap', 'putExpDateMap']:
             options_dict.append(entry)
 # Convert dictionary to dataframe
 df = pd.DataFrame(options_dict)
+
+# Filter expiration date
+expiry = datetime.datetime.strptime(expiry, "%Y-%m-%d")
+expiry = int(datetime.datetime.timestamp(expiry.replace(hour=21, tzinfo=tz.UTC))) * 1000
+df = df[df['expirationDate'] == expiry]
 
 ################################################## Calculate Max Pain #################################################
 call_df = df[df['putCall'] == 'CALL']
