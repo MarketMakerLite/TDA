@@ -56,7 +56,6 @@ m = losses.index(min(losses))
 max_pain = strikes[m]
 
 ################################################## Create Plotly Chart ################################################
-
 colors = {'CALL': '#00c805',
           'PUT': '#FF0060'}
 chart_expiry = datetime.datetime.utcfromtimestamp(df['expirationDate'][0]/1000).replace(tzinfo=tz.UTC).astimezone(tz.gettz('America/New_York')).date()
