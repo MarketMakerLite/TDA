@@ -25,7 +25,7 @@ c = easy_client(
 
 ####################################################### Set Variables #################################################
 symbol = 'TSLA'
-expiry = '2022-01-07'  # YYYY-MM-DD
+expiry = '2022-01-21'  # YYYY-MM-DD
 
 ####################################################### Retrieve Data #################################################
 options_dict = []
@@ -34,10 +34,10 @@ query = c.get_option_chain(symbol).json()
 for contr_type in ['callExpDateMap', 'putExpDateMap']:
     contract = dict(query)[contr_type]
     expirations = contract.keys()
-    for expiry in list(expirations):
-        strikes = contract[expiry].keys()
+    for expirys in list(expirations):
+        strikes = contract[expirys].keys()
         for st in list(strikes):
-            entry = contract[expiry][st][0]
+            entry = contract[expirys][st][0]
             options_dict.append(entry)
 # Convert dictionary to dataframe
 df = pd.DataFrame(options_dict)
