@@ -148,7 +148,7 @@ def options_chain(symbol, c):
                 if options_dict:
                     # Remove any unknown keys from response (in case TDA changes the API response without warning)
                     # List of known keys
-                    keys = ["putCall", "symbol", "description", "exchangeName", "bid", "ask", "last", "mark", "bidSize"
+                    keys = ["putCall", "symbol", "description", "exchangeName", "bid", "ask", "last", "mark", "bidSize",
                             "askSize", "bidAskSize", "lastSize", "highPrice", "lowPrice", "openPrice", "closePrice",
                             "totalVolume", "tradeDate", "tradeTimeInLong", "quoteTimeInLong", "netChange", "volatility",
                             "delta", "gamma", "theta", "vega", "rho", "openInterest", "timeValue", "theoreticalOptionValue",
